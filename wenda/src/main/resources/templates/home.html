@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+    $!{value1}
+    colors:$!{colors}
+    #foreach($color in $colors)
+        This is Color: $color{foreach.index}:$color,$!{foreach.count}
+    #end
+
+    #foreach($key in $map.keySet())
+        Number: $key, Value: $map.get($key)
+    #end
+
+    #foreach($kv in $map.entrySet())
+    Number: $kv.key, Value: $kv.value
+    #end
+
+    User: $!{user.name}
+    $!{use.description}
+    $!{use.getDescription}
+
+    #set($title = "newcoder_title")
+    Title: $!{title}
+
+    Parse:#parse("header.html")
+    Include:#include("header.html")
+
+    #macro(render_color, $index, $color)      ##宏，提高代码复用性，比如热门推荐
+        Color Render Macro $index, $color
+    #end
+
+     #foreach($color in $colors)
+        #render_color($foreach.index, $color)
+    #end
+
+    #set($hello = "hello")
+    #set($helloworld1 = "$!{hello} world")
+
+    $!hello
+    $helloworld1
+
+</pre>
+</body>
+</html>
